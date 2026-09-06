@@ -1,0 +1,208 @@
+/* Site assistant widget. Plain CSS on the site palette from globals.css —
+   this project has no Tailwind, so the widget carries its own styling. */
+
+.chat-launcher {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 60;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: 2px solid var(--orange);
+  background: var(--orange);
+  color: #071829;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 12px 30px rgba(6, 29, 58, 0.28);
+  transition: 0.2s;
+}
+.chat-launcher:hover {
+  transform: translateY(-2px);
+}
+
+.chat-panel {
+  position: fixed;
+  right: 24px;
+  bottom: 94px;
+  z-index: 60;
+  width: min(384px, calc(100vw - 32px));
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: 0 26px 60px rgba(6, 29, 58, 0.3);
+}
+
+.chat-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--navy);
+  padding: 14px 18px;
+}
+.chat-head strong {
+  display: block;
+  color: #fff;
+  font-size: 15px;
+}
+.chat-head span {
+  display: block;
+  color: #9fb3c6;
+  font-size: 11px;
+  margin-top: 3px;
+}
+.chat-head button {
+  background: none;
+  border: 0;
+  color: #9fb3c6;
+  font-size: 15px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+.chat-head button:hover {
+  color: #fff;
+}
+
+.chat-log {
+  flex: 1;
+  overflow-y: auto;
+  max-height: 22rem;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.chat-row {
+  display: flex;
+  flex-direction: column;
+}
+.chat-row.user {
+  align-items: flex-end;
+}
+.chat-row.bot {
+  align-items: flex-start;
+}
+
+.chat-bubble {
+  max-width: 85%;
+  white-space: pre-line;
+  border-radius: 16px;
+  padding: 10px 14px;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.chat-row.bot .chat-bubble {
+  background: #f1f4f7;
+  color: #263441;
+}
+.chat-row.user .chat-bubble {
+  background: var(--orange);
+  color: #071829;
+  font-weight: 600;
+}
+.chat-bubble.typing {
+  color: #93a1af;
+  letter-spacing: 2px;
+}
+
+.chat-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+  max-width: 90%;
+}
+.chat-links a {
+  border: 1px solid #f3d0a4;
+  background: #fff7ed;
+  color: #9a5000;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.chat-links a:hover {
+  background: #ffedd8;
+}
+
+.chat-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-top: 2px;
+}
+.chat-chips button {
+  border: 1px solid #cfd8e1;
+  background: #fff;
+  color: #47596b;
+  border-radius: 999px;
+  padding: 7px 12px;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  transition: 0.15s;
+}
+.chat-chips button:hover {
+  border-color: var(--orange);
+  background: #fff7ed;
+  color: #9a5000;
+}
+
+.chat-input {
+  border-top: 1px solid var(--line);
+  padding: 12px;
+  display: flex;
+  gap: 8px;
+}
+.chat-input input {
+  flex: 1;
+  min-width: 0;
+  font: inherit;
+  font-size: 14px;
+  border: 1px solid #cfd7df;
+  border-radius: 8px;
+  padding: 10px 12px;
+  outline: none;
+}
+.chat-input input:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(13, 71, 117, 0.09);
+}
+.chat-input button {
+  border: 0;
+  background: var(--orange);
+  color: #071829;
+  font: inherit;
+  font-weight: 800;
+  font-size: 14px;
+  border-radius: 8px;
+  padding: 10px 16px;
+  cursor: pointer;
+}
+.chat-input button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+@media (max-width: 600px) {
+  .chat-launcher {
+    right: 16px;
+    bottom: 16px;
+  }
+  .chat-panel {
+    right: 16px;
+    left: 16px;
+    bottom: 84px;
+    width: auto;
+  }
+  .chat-log {
+    max-height: 60vh;
+  }
+}

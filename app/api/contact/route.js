@@ -35,8 +35,12 @@ export async function POST(request) {
     );
   }
 
+  const fromChat = input.source === 'CHAT';
+
   const text = [
-    'New Olmem Technical Services website request',
+    fromChat
+      ? 'New Olmem Technical Services request (captured by the site assistant)'
+      : 'New Olmem Technical Services website request',
     '',
     `Name: ${input.name}`,
     `Company: ${input.company || '-'}`,
@@ -48,7 +52,9 @@ export async function POST(request) {
     input.message,
   ].join('\n');
 
-  const subject = `Service request from ${input.name}${input.company ? ` - ${input.company}` : ''}`;
+  const subject = `${fromChat ? 'Chat lead' : 'Service request'} from ${input.name}${
+    input.company ? ` - ${input.company}` : ''
+  }`;
 
   const [emailed, leadId] = await Promise.all([
     sendNotificationEmail({ subject, text, replyTo: input.email }, 'contact form'),
